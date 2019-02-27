@@ -12,7 +12,6 @@ public class ConnectionDB{
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
 	private static final Logger LOG = Logger.getLogger(ConnectionDB.class.getName());
-
 //	static String driverHSQLDB="org.hsqldb.jdbcDriver";
 //	static String urlHSQLDB="jdbc:hsqldb:file:srv_db";
 	
