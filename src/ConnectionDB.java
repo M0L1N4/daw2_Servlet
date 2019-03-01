@@ -12,18 +12,13 @@ public class ConnectionDB{
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
 	private static final Logger LOG = Logger.getLogger(ConnectionDB.class.getName());
-//	static String driverHSQLDB="org.hsqldb.jdbcDriver";
-//	static String urlHSQLDB="jdbc:hsqldb:file:srv_db";
+	public static Connection conn = null;
 	
-/*
-	String url = "jdbc:hsqldb:file:srv_db";
-	Properties props = new Properties();
-	props.setProperty("user", "sa");
-	props.setProperty("password", "");
-	DriverManager.getConnection(url, props);*/
+// System DB: /Applications/Eclipse.app/Contents/MacOS/srv_db
+// My DB: /Users/alvaro/eclipse-workspace/daw2_Servlet/WebContent/WEB-INF/data_base/srv_db
+// My new DB: /Users/alvaro/eclipse-workspace/daw2_Servlet/WebContent/WEB-INF/db/srv_db
 	
-	public static Connection getConnection(){
-		Connection conn = null;
+	public static Connection getConnection(){		
 		try {
 
 			input = new FileInputStream("/Users/alvaro/eclipse-workspace/daw2_Servlet/props/dbConnData.properties");
@@ -43,7 +38,7 @@ public class ConnectionDB{
 				try {
 					input.close();
 				} catch (IOException e) {
-					LOG.log(null,"FILE ERROR: "+e);
+					LOG.log(null,"CLOSE ERROR: "+e);
 				}
 			}
 		}	
@@ -58,6 +53,24 @@ public class ConnectionDB{
 		catch (SQLException e) {
 			LOG.log(null,"STOP DB ERROR: "+e);
 		}
+	}
+	
+	public static boolean stopConn() {
+		try {
+			if(conn != null) {
+				conn.close();
+				System.err.println("\nCLOSE CONN\n****************\n"+conn);
+				//conn = null;
+//				ConnectionDB.stopConnection();
+//				System.err.println("\nSHUTDOWN DB\n****************\n"+conn);
+				return true;
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
 	}
 	
 	private ConnectionDB() {

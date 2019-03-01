@@ -15,23 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/login")
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-/*	static String DRIVER="org.hsqldb.jdbcDriver";
-	static String URL="jdbc:hsqldb:hsql://localhost/xdb";
-	static Connection conn = null;
-    /**
-     * @method getConnection
-     * @return the Data Base connection
-     * * /
-	public static Connection getConnection() {
-		try {
-			Class.forName(DRIVER);
-			conn=DriverManager.getConnection(URL,"SA","");
-			
-		}catch(ClassNotFoundException | SQLException e) {
-			System.err.println("Error: "+e);
-		}
-		return conn;
-	}*/
 	
 	/**
      * @see HttpServlet#HttpServlet()
@@ -57,8 +40,8 @@ public class login extends HttpServlet {
 	private void responseWeb(HttpServletResponse resp, String msg)
 			throws IOException {
 		PrintWriter out = resp.getWriter();
-		out.println("<html>");
-		out.println("<body>");
+		out.println("<!DOCTYPE html><html>");
+		out.println("<head/><body>");
 		out.println("<t1>" + msg + "</t1>");		
 		out.println("</body>");
 		out.println("</html>");

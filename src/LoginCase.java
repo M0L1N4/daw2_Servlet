@@ -31,9 +31,10 @@ public class LoginCase {
 		PreparedStatement ps = null;
 		
 		try {
-			String consulta = "insert into USERS (NICK,PASS,EMAIL) VALUES(?,?,?);";
+			String consulta = "insert into USERS (\"NICK\",\"PASS\",\"EMAIL\") VALUES(?,?,?);";
+			System.err.println("\nINSERT CON\n****************\n"+con);
 			ps = con.prepareStatement(consulta);
-			
+			System.err.println("\nCON INSERT\n****************\n"+con);
 			System.err.println("\n*****************\n****************\n"+ps);
 			ps.setString(1,uName);
 			ps.setString(2,uPass);
@@ -58,13 +59,23 @@ public class LoginCase {
 				if(con != null) {
 					con.close();
 					System.err.println("\nCLOSE CON\n****************\n"+con);
+					System.err.println("\nIS CON CLOSED?\n****************\n"+con.isClosed());
+					//con = null;
 					ConnectionDB.stopConnection();
-					System.err.println("\nSHUTDOWN DB\n****************\n"+con);
+					System.err.println("\nSHUTDOWN DB\n****************\n"+ConnectionDB.conn);
+					if(ConnectionDB.stopConn()) {
+						System.err.println("\nALL IS OK\n****************\n"+ConnectionDB.conn);
+					}
+					else {
+						System.err.println("\nMMMEEEEEEKKKKKKK!!!\n****************\n"+ConnectionDB.conn);
+					}
+						
 				}
 			} 
 			catch (SQLException e) {
 				e.printStackTrace();
 			}
+//			return ConnectionDB.stopConn();
 		}
 		return false;
 	}
