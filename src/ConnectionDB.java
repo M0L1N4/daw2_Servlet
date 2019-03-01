@@ -9,6 +9,9 @@ import java.util.logging.Logger;
 
 public class ConnectionDB{
 	
+	static Logger logger = Logger.getLogger(LoginCase.class.getName());
+
+	
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
 	private static final Logger LOG = Logger.getLogger(ConnectionDB.class.getName());
@@ -59,7 +62,9 @@ public class ConnectionDB{
 		try {
 			if(conn != null) {
 				conn.close();
-				System.err.println("\nCLOSE CONN\n****************\n"+conn);
+//				System.err.println("\nCLOSE CONN\n****************\n"+conn);
+				logger.log(null, "\nCLOSE CONN\n****************\n",conn);
+
 				//conn = null;
 //				ConnectionDB.stopConnection();
 //				System.err.println("\nSHUTDOWN DB\n****************\n"+conn);
