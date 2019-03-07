@@ -45,6 +45,8 @@ public class login extends HttpServlet {
 		out.println("<t1>" + msg + "</t1>");		
 		out.println("</body>");
 		out.println("</html>");
+		
+		out.close();
 	}
 
 	/**

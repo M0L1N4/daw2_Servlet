@@ -28,22 +28,21 @@ public class LoginCase {
 	 * */
 	
 	public static boolean insertUser(String uName, String uPass, String uEmail){
-		Connection con;
-		con = ConnectionDB.getConnection();
+//		Connection con;
+		ConnectionDB.conn = ConnectionDB.getConnection();
 		PreparedStatement ps = null;
 		
 		try {
 			String consulta = "insert into USERS (\"NICK\",\"PASS\",\"EMAIL\") VALUES(?,?,?);";
 //			System.err.println("\nINSERT CON\n****************\n"+con);
-			ps = con.prepareStatement(consulta);
+			ps = ConnectionDB.conn.prepareStatement(consulta);
 //			System.err.println("\nCON INSERT\n****************\n"+con);
 //			System.err.println("\n*****************\n****************\n"+ps);
 			
 			ps.setString(1,uName);
 			ps.setString(2,uPass);
 			ps.setString(3,uEmail);
-//			System.err.println("\nASSIGNATION\n****************\n"+ps);
-			logger.log(null, "\nASSIGNATION\n****************\n",ps);
+			System.err.println("\nASSIGNATION\n****************\n"+ps);
 			
 			if(ps.executeUpdate() == 1) {
 //				System.err.println("\nTRUE\n****************\n");
@@ -55,31 +54,26 @@ public class LoginCase {
 		}
 		finally {
 			try {
-//				System.err.println("\nFINALLY\n****************\n"+ps);
-				logger.log(null, "\nFINALLY\n****************\n",ps);
+				System.err.println("\nFINALLY\n****************\n"+ps);
 				if(ps != null) {
 					ps.close();
-//					System.err.println("\nCLOSE PS\n****************\n"+ps);
-					logger.log(null, "\nCLOSE PS\n****************\n",ps);
-					logger.log(null, "\nCLOSE PS\n****************\n",ps.isClosed());
+					System.err.println("\nCLOSE PS\n****************\n"+ps);
 
 				}
-				if(con != null) {
-					con.close();
-					logger.log(null, "\nCLOSE CON\n****************\n",con.isClosed());
-//					System.err.println("\nCLOSE CON\n****************\n"+con);
-//					System.err.println("\nIS CON CLOSED?\n****************\n"+con.isClosed());
+				if(ConnectionDB.conn != null) {
+					ConnectionDB.conn.close();
+					System.err.println("\nCLOSE CON\n****************\n"+ConnectionDB.conn);
+					System.err.println("\nIS CON CLOSED?\n****************\n"+ConnectionDB.conn.isClosed());
 					//con = null;
 					ConnectionDB.stopConnection();
-					logger.log(null, "\nSHUTDOWN DB\n****************\n",ConnectionDB.conn);
-//					System.err.println("\nSHUTDOWN DB\n****************\n"+ConnectionDB.conn);
+
+					System.err.println("\nSHUTDOWN DB\n****************\n"+ConnectionDB.conn);
 					if(ConnectionDB.stopConn()) {
-//						System.err.println("\nALL IS OK\n****************\n"+ConnectionDB.conn);
-						logger.log(null, "\nALL IS OK\n****************\n",ConnectionDB.conn);
+						System.err.println("\nALL IS OK\n****************\n"+ConnectionDB.conn);
+
 					}
 					else {
-//						System.err.println("\nMMMEEEEEEKKKKKKK!!!\n****************\n"+ConnectionDB.conn);
-						logger.log(null, "\nMMMEEEEEEKKKKKKK!!!\n****************\n",ConnectionDB.conn);
+						System.err.println("\nMMMEEEEEEKKKKKKK!!!\n****************\n"+ConnectionDB.conn);
 					}
 						
 				}

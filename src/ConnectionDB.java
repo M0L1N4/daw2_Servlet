@@ -20,7 +20,7 @@ public class ConnectionDB{
 // System DB: /Applications/Eclipse.app/Contents/MacOS/srv_db
 // My DB: /Users/alvaro/eclipse-workspace/daw2_Servlet/WebContent/WEB-INF/data_base/srv_db
 // My new DB: /Users/alvaro/eclipse-workspace/daw2_Servlet/WebContent/WEB-INF/db/srv_db
-	
+
 	public static Connection getConnection(){		
 		try {
 
@@ -31,17 +31,20 @@ public class ConnectionDB{
 			conn = DriverManager.getConnection(prop.getProperty("CONN_HSQLDB"));
 		}
 		catch(ClassNotFoundException | SQLException e) {
-			LOG.log(null,"Error: "+e);
+//			LOG.log(null,"Error: "+e);
+			System.err.println("\nERROR: "+e);
 		}
 		catch (IOException ex) {
-			LOG.log(null,"FILE ERROR: "+ex);
+//			LOG.log(null,"FILE ERROR: "+ex);
+			System.err.println("\nFILE ERROR: "+ex);
 		}
 		finally {
 			if (input != null) {
 				try {
 					input.close();
 				} catch (IOException e) {
-					LOG.log(null,"CLOSE ERROR: "+e);
+//					LOG.log(null,"CLOSE ERROR: "+e);
+					System.err.println("\nCLOSE ERROR: "+e);
 				}
 			}
 		}	
@@ -50,11 +53,13 @@ public class ConnectionDB{
 	
 	public static void stopConnection(){
 		try {			
-			DriverManager.getConnection(prop.getProperty("DRIVER_OFF"),
+			conn= DriverManager.getConnection(prop.getProperty("DRIVER_OFF"),
 					prop.getProperty("USER_HSQLDB"),prop.getProperty("PASS_HSQLDB"));
+			
+			System.err.println("\nSHUTDOWN DB\n****************\n"+conn);
 		}
 		catch (SQLException e) {
-			LOG.log(null,"STOP DB ERROR: "+e);
+			System.err.println("\nSTOP DB ERROR: "+e);
 		}
 	}
 	
@@ -62,12 +67,10 @@ public class ConnectionDB{
 		try {
 			if(conn != null) {
 				conn.close();
-//				System.err.println("\nCLOSE CONN\n****************\n"+conn);
-				logger.log(null, "\nCLOSE CONN\n****************\n",conn);
-
+				System.err.println("\nCLOSE CONN\n****************\n"+conn);
 				//conn = null;
 //				ConnectionDB.stopConnection();
-//				System.err.println("\nSHUTDOWN DB\n****************\n"+conn);
+				
 				return true;
 			}
 		} 

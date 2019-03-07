@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Súper capçalera</h1>
-<a href="html/login.html">Login1</a>
+<a href="html/signin.html">Sign in</a>
 
 <form action="login" method="get">
 		<table>
