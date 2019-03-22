@@ -14,12 +14,8 @@ public class ConnectionDB{
 	
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
-	private static final Logger LOG = Logger.getLogger(ConnectionDB.class.getName());
 	public static Connection conn = null;
 	
-// System DB: /Applications/Eclipse.app/Contents/MacOS/srv_db
-// My DB: /Users/alvaro/eclipse-workspace/daw2_Servlet/WebContent/WEB-INF/data_base/srv_db
-// My new DB: /Users/alvaro/eclipse-workspace/daw2_Servlet/WebContent/WEB-INF/db/srv_db
 
 	public static Connection getConnection(){		
 		try {
@@ -31,11 +27,9 @@ public class ConnectionDB{
 			conn = DriverManager.getConnection(prop.getProperty("CONN_HSQLDB"));
 		}
 		catch(ClassNotFoundException | SQLException e) {
-//			LOG.log(null,"Error: "+e);
 			System.err.println("\nERROR: "+e);
 		}
 		catch (IOException ex) {
-//			LOG.log(null,"FILE ERROR: "+ex);
 			System.err.println("\nFILE ERROR: "+ex);
 		}
 		finally {
@@ -43,7 +37,6 @@ public class ConnectionDB{
 				try {
 					input.close();
 				} catch (IOException e) {
-//					LOG.log(null,"CLOSE ERROR: "+e);
 					System.err.println("\nCLOSE ERROR: "+e);
 				}
 			}
@@ -68,8 +61,6 @@ public class ConnectionDB{
 			if(conn != null) {
 				conn.close();
 				System.err.println("\nCLOSE CONN\n****************\n"+conn);
-				//conn = null;
-//				ConnectionDB.stopConnection();
 				
 				return true;
 			}
