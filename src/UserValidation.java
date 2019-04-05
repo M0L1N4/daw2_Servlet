@@ -11,13 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class UserValidation
+ * @class UserValidation.java
+ * 
+ * Class to control the session user in the application
  */
 @WebServlet(description = "User web validation", urlPatterns = { "/UserValidation" })
 public class UserValidation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static HttpSession uSESSION;
+	private HttpSession uSESSION;
 
     public HttpSession getUserSession() {
     	return uSESSION;
@@ -32,7 +34,6 @@ public class UserValidation extends HttpServlet {
 			PrintWriter out = response.getWriter();  
 
 			String uName=request.getParameter("userName");
-			String uPass=request.getParameter("userPass");
 			
 			//COMPROVEM QUE L'USUARI ESTIGUI A LA BASE DE DADES, SI ÉS AIXÍ, SEGUIM AMB EL CODI DE SOTA
 			
@@ -57,7 +58,6 @@ public class UserValidation extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
@@ -66,7 +66,6 @@ public class UserValidation extends HttpServlet {
      */
     public UserValidation() {
         super();
-        // TODO Auto-generated constructor stub
     }
 	
 }

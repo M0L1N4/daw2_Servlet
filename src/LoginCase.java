@@ -1,5 +1,4 @@
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -28,16 +27,14 @@ public class LoginCase {
 	 * */
 	
 	public static boolean insertUser(String uName, String uPass, String uEmail){
-//		Connection con;
+
 		ConnectionDB.conn = ConnectionDB.getConnection();
 		PreparedStatement ps = null;
 		
 		try {
 			String consulta = "insert into USERS (\"NICK\",\"PASS\",\"EMAIL\") VALUES(?,?,?);";
-//			System.err.println("\nINSERT CON\n****************\n"+con);
+
 			ps = ConnectionDB.conn.prepareStatement(consulta);
-//			System.err.println("\nCON INSERT\n****************\n"+con);
-//			System.err.println("\n*****************\n****************\n"+ps);
 			
 			ps.setString(1,uName);
 			ps.setString(2,uPass);
@@ -45,7 +42,6 @@ public class LoginCase {
 			System.err.println("\nASSIGNATION\n****************\n"+ps);
 			
 			if(ps.executeUpdate() == 1) {
-//				System.err.println("\nTRUE\n****************\n");
 				return true;
 			}
 		}
@@ -64,7 +60,6 @@ public class LoginCase {
 					ConnectionDB.conn.close();
 					System.err.println("\nCLOSE CON\n****************\n"+ConnectionDB.conn);
 					System.err.println("\nIS CON CLOSED?\n****************\n"+ConnectionDB.conn.isClosed());
-					//con = null;
 					ConnectionDB.stopConnection();
 
 					System.err.println("\nSHUTDOWN DB\n****************\n"+ConnectionDB.conn);
@@ -81,7 +76,6 @@ public class LoginCase {
 			catch (SQLException e) {
 				e.printStackTrace();
 			}
-//			return ConnectionDB.stopConn();
 		}
 		return false;
 	}

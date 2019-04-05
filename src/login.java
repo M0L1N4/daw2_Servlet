@@ -3,6 +3,8 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.regex.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +32,16 @@ public class login extends HttpServlet {
 		String pass = request.getParameter("password");
 		String email = request.getParameter("email");
 		
+		
+		
+		String strRegEx = ".+";
+        
+        if(user.matches(strRegEx)){
+            System.out.println(user + " is valid");
+        }else{
+            System.out.println(user + " is not valid");
+        }
+		
 		if (LoginCase.insertUser(user, pass, email) == true) {
 			responseWeb(response, "login ok");
 		} else {
@@ -53,7 +65,6 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
