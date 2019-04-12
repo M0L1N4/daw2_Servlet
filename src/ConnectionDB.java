@@ -17,17 +17,28 @@ public class ConnectionDB{
 	public static Connection conn = null;
 	
 
+	private static void loadDriver() {
+		try {
+			Class.forName(prop.getProperty("DRIVER_HSQLDB"));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static Connection getConnection(){		
 		try {
 
 			input = new FileInputStream("/Users/alvaro/eclipse-workspace/daw2_Servlet/props/dbConnData.properties");
 			prop.load(input);
 			
-			Class.forName(prop.getProperty("DRIVER_HSQLDB"));
-			conn = DriverManager.getConnection(prop.getProperty("CONN_HSQLDB"));
-		}
-		catch(ClassNotFoundException | SQLException e) {
-			System.err.println("\nERROR: "+e);
+			loadDriver();
+			try {
+				conn = DriverManager.getConnection(prop.getProperty("CONN_HSQLDB"));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		catch (IOException ex) {
 			System.err.println("\nFILE ERROR: "+ex);
