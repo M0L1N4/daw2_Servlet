@@ -15,16 +15,7 @@ public class ConnectionDB{
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
 	public static Connection conn = null;
-	
 
-	private static void loadDriver() {
-		try {
-			Class.forName(prop.getProperty("DRIVER_HSQLDB"));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
 	public static Connection getConnection(){		
 		try {
@@ -32,11 +23,14 @@ public class ConnectionDB{
 			input = new FileInputStream("/Users/alvaro/eclipse-workspace/daw2_Servlet/props/dbConnData.properties");
 			prop.load(input);
 			
-			loadDriver();
+			try {
+				Class.forName(new String(prop.getProperty("DRIVER_HSQLDB")));
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
 			try {
 				conn = DriverManager.getConnection(prop.getProperty("CONN_HSQLDB"));
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
