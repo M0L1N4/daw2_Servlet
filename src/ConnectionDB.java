@@ -30,14 +30,6 @@ public class ConnectionDB{
 //			}
 			
 			try {
-			      synchronized (Class.forName(prop.getProperty("DRIVER_HSQLDB"))) {
-//			        return format.parse(str);
-			      }
-			    } catch (ClassNotFoundException x) {
-			    	x.printStackTrace();
-			    }
-			
-			try {
 				conn = DriverManager.getConnection(prop.getProperty("CONN_HSQLDB"));
 			} catch (SQLException e) {
 				e.printStackTrace();
