@@ -16,6 +16,7 @@ public class ConnectionDB{
 	private static InputStream input = null;
 	public static Connection conn = null;
 
+	@java.lang.SuppressWarnings("squid:S1523")
 	public static Connection getConnection(){		
 		try {
 
