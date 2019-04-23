@@ -18,10 +18,10 @@ public class ConnectionDB{
 	public static Connection conn = null;
 
 	@SuppressWarnings("squid:S1523")
-	public static Connection getConnection(){		
+	public static Connection getConnection(String propURL){		
 		try {
 
-			input = new FileInputStream("/Users/alvaro/eclipse-workspace/daw2_Servlet/props/dbConnData.properties");
+			input = new FileInputStream(propURL);
 			prop.load(input);
 			
 			try {

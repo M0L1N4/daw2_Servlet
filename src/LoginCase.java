@@ -28,7 +28,7 @@ public class LoginCase {
 	
 	public static boolean insertUser(String uName, String uPass, String uEmail){
 
-		ConnectionDB.conn = ConnectionDB.getConnection();
+		ConnectionDB.conn = ConnectionDB.getConnection("/Users/alvaro/eclipse-workspace/daw2_Servlet/props/dbConnData.properties");
 		PreparedStatement ps = null;
 		
 		try {
