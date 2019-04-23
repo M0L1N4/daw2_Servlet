@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 public class ConnectionDB{
 	
+
 	static Logger logger = Logger.getLogger(LoginCase.class.getName());
 
 	
@@ -16,7 +17,7 @@ public class ConnectionDB{
 	private static InputStream input = null;
 	public static Connection conn = null;
 
-	@java.lang.SuppressWarnings("squid:S1523")
+	@SuppressWarnings("squid:S1523")
 	public static Connection getConnection(){		
 		try {
 
