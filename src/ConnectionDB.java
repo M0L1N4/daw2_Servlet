@@ -16,22 +16,23 @@ public class ConnectionDB{
 	private static InputStream input = null;
 	public static Connection conn = null;
 
-	
 	public static Connection getConnection(){		
 		try {
 
 			input = new FileInputStream("/Users/alvaro/eclipse-workspace/daw2_Servlet/props/dbConnData.properties");
 			prop.load(input);
 			
-//			try {
-//				Class.forName(prop.getProperty("DRIVER_HSQLDB"));
-//			} catch (ClassNotFoundException e1) {
-//				e1.printStackTrace();
-//			}
+			try {
+				Class.forName(prop.getProperty("DRIVER_HSQLDB"));
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
 			
 			try {
 				conn = DriverManager.getConnection(prop.getProperty("CONN_HSQLDB"));
+				System.out.println("\n\n*TRY==\n"+conn+"--------\n\n");
 			} catch (SQLException e) {
+				System.out.println("\n\n***===\n"+conn+"--------\n\n");
 				e.printStackTrace();
 			}
 		}
