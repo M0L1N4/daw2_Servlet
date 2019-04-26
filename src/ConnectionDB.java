@@ -14,14 +14,18 @@ public class ConnectionDB{
 
 	
 	private static Properties prop = new Properties();
+	private static ClassLoader loader = Thread.currentThread().getContextClassLoader();           
 	private static InputStream input = null;
 	public static Connection conn = null;
+	
+//	private static FileConnection fc = (FileConnection) Connector.open("file:///CFCard/" + fileName);
 
 	@SuppressWarnings("squid:S1523")
 	public static Connection getConnection(String propURL){		
-		try {
+		try {			         
 
-			input = new FileInputStream(propURL);
+//			input = new FileInputStream(propURL);
+			input = loader.getResourceAsStream(propURL);
 			prop.load(input);
 			
 			try {
