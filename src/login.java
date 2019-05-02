@@ -27,6 +27,7 @@ public class login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @SuppressWarnings("squid:S4784")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String user = request.getParameter("user");
 		String pass = request.getParameter("password");

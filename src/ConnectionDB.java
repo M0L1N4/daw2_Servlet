@@ -14,7 +14,6 @@ public class ConnectionDB{
 
 	
 	private static Properties prop = new Properties();
-	private static ClassLoader loader = Thread.currentThread().getContextClassLoader();           
 	private static InputStream input = null;
 	public static Connection conn = null;
 	
@@ -22,11 +21,15 @@ public class ConnectionDB{
 
 	@SuppressWarnings("squid:S1523")
 	public static Connection getConnection(String propURL){		
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		try {			         
 
+			System.out.println("\n\nHHHEEEEEEEEEHHHHHHHH!!!!!! "+propURL+"\n\n"+loader);
 //			input = new FileInputStream(propURL);
-			input = loader.getResourceAsStream(propURL);
+			input = loader.getResourceAsStream("/daw2_Servlet/props/dbConnData.properties");
+			System.out.println("\n\n************************\n"+input+"!!!!!!");
 			prop.load(input);
+			System.out.println("\n\nLOADED!!!!!!");
 			
 			try {
 				Class.forName(prop.getProperty("DRIVER_HSQLDB"));
