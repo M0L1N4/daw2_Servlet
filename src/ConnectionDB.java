@@ -1,3 +1,6 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Logger;
+
+import org.junit.jupiter.api.Test;
 
 public class ConnectionDB{
 	
@@ -88,4 +93,9 @@ public class ConnectionDB{
 	private ConnectionDB() {
         super();        
     }
+	
+	@Test
+	void test() {
+		assertEquals(false, stopConn());
+	}
 }
