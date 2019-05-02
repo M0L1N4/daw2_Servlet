@@ -95,7 +95,8 @@ public class ConnectionDB{
     }
 	
 	@Test
-	void test() {
-		assertEquals(false, stopConn());
+	void stopConnTest() {
+		boolean bol = stopConn();
+		assertEquals(false, bol);
 	}
 }
