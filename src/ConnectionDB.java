@@ -17,15 +17,12 @@ public class ConnectionDB{
 	private static InputStream input = null;
 	public static Connection conn = null;
 	
-//	private static FileConnection fc = (FileConnection) Connector.open("file:///CFCard/" + fileName);
-
 	@SuppressWarnings("squid:S1523")
 	public static Connection getConnection(String propURL){		
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		try {			         
 
 			System.out.println("\n\nHHHEEEEEEEEEHHHHHHHH!!!!!! "+propURL+"\n\n"+loader);
-//			input = new FileInputStream(propURL);
 			input = loader.getResourceAsStream("/daw2_Servlet/props/dbConnData.properties");
 			System.out.println("\n\n************************\n"+input+"!!!!!!");
 			prop.load(input);
