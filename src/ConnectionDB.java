@@ -79,7 +79,7 @@ public class ConnectionDB{
 			if(conn != null) {
 				conn.close();
 				System.err.println("\nCLOSE CONN\n****************\n"+conn);
-				
+				conn = null;
 				return true;
 			}
 		} 
@@ -93,10 +93,4 @@ public class ConnectionDB{
 	private ConnectionDB() {
         super();        
     }
-	
-	@Test
-	void stopConnTest() {
-		boolean bol = stopConn();
-		assertEquals(false, bol);
-	}
 }
