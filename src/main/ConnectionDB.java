@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class ConnectionDB{
+public final class ConnectionDB{
 	
 
 	static Logger logger = Logger.getLogger(LoginCase.class.getName());
