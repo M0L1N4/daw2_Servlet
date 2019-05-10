@@ -1,9 +1,9 @@
-package test;
+package test.java;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import main.LoginCase;
+import main.java.LoginCase;
 
 /**
  * 

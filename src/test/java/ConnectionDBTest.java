@@ -1,12 +1,15 @@
-package test;
+package test.java;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import main.ConnectionDB;
+import main.java.ConnectionDB;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 
 class ConnectionDBTest {
-	
+		
 	@Test
 	void testGetConnection() {
 		boolean bol;
